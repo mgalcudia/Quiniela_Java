@@ -12,6 +12,10 @@
         <servlet-name>FormHelper</servlet-name>
         <servlet-class>controlador.dwes.FormHelper</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>formularioII</servlet-name>
+        <servlet-class>controlador.dwes.formularioII</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Index</servlet-name>
         <url-pattern>/Index</url-pattern>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>FormHelper</servlet-name>
         <url-pattern>/FormHelper</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>formularioII</servlet-name>
+        <url-pattern>/formularioII</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
