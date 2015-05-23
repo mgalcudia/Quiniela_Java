@@ -26,9 +26,9 @@ public class formulario extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        String botonEnviar=request.getParameter("btnenviarboleto");//valor del boton de enviar
+        String boton_Enviar=request.getParameter("btnenviarboleto");//valor del boton de enviar
         
-        if (botonEnviar!=null) 
+        if (boton_Enviar!=null) 
         { 
 
                         // Han enviado los datos
@@ -64,7 +64,7 @@ public class formulario extends HttpServlet {
               //  dispatcher = request.getRequestDispatcher(urlFormApuesta);//"form_apuestas.jsp"
 
                 // Redirigimos petición a página JSP -> form_servlet.jsp
-                request.getRequestDispatcher("urlFormApuesta").forward(request, response); 
+                request.getRequestDispatcher("formu_boletos.jsp").forward(request, response); 
             }
 
            

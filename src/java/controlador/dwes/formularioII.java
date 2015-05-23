@@ -28,21 +28,88 @@ public class formularioII extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet formularioII</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet formularioII at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+
+
+
+        String boton_Apuesta=request.getParameter("continuar");
+        String modo=request.getParameter("modo");
+
+
+        if(boton_Apuesta!=null){
+
+                 // Han enviado los datos
+            // Comprobamos si hay errores
+            int num_boletos = Integer.parseInt(request.getParameter("num_boletos")); 
+            boolean error_Boleto= false;
+
+            //Recorremos todos los boletos para comprobar si alguno esta sin añadir apuesta
+            //
+            for(int i=1; i<=num_boletos; i++) 
+            {
+             String apuesta=request.getParameter("apuesta"+i);
+
+             if (apuesta.equals("Seleccione"))
+             {
+                request.setAttribute("error_Apuesta", "Todos los campos deben tener un número seleccionado");
+                error_Boleto=true;
+            }
         }
+
+        if(error_Boleto){
+
+                 // Hay error y volvemos a mostrar el jsp anterior
+            request.getRequestDispatcher("formu_boletos.jsp").forward(request, response);
+
+
+        }else{
+
+           if(modo.equals("text"))
+           {
+
+
+                    // No hay error mostramos el jsp quiniela texto
+            request.getRequestDispatcher("").forward(request, response); 
+
+
+        }else{
+
+                     // No hay error mostramos el jsp quiniela grafico
+            request.getRequestDispatcher("").forward(request, response);
+
+        }
+
     }
+}
+else
+{
+
+            // es la primera vez   Redirigimos petición a página JSP 
+    request.getRequestDispatcher("formu_boletos.jsp").forward(request, response);
+}
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -55,7 +122,7 @@ public class formularioII extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    throws ServletException, IOException {
         processRequest(request, response);
     }
 
@@ -69,7 +136,7 @@ public class formularioII extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    throws ServletException, IOException {
         processRequest(request, response);
     }
 
