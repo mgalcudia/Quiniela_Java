@@ -16,6 +16,10 @@
         <servlet-name>formularioII</servlet-name>
         <servlet-class>controlador.dwes.formularioII</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>num_aleatorio</servlet-name>
+        <servlet-class>controlador.dwes.num_aleatorio</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Index</servlet-name>
         <url-pattern>/Index</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>formularioII</servlet-name>
         <url-pattern>/formularioII</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>num_aleatorio</servlet-name>
+        <url-pattern>/num_aleatorio</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

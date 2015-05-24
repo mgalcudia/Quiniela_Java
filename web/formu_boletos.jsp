@@ -15,7 +15,7 @@
         <h3>Apuestas</h3>
         <%String modo=request.getParameter("modo");%>
         <%=request.getParameter("modo") %>
-        <form action="controlador?modo=<%=modo%>" method="post">
+        <form action="formularioII?modo=<%=modo%>" method="post">
             <%-- Guardo el número de boletos convirtiendolo como entero --%>
             <% int num_boletos = Integer.parseInt(request.getParameter("num_boletos"));%>
             <p>Se juegan <%=num_boletos%> boletos.</p>

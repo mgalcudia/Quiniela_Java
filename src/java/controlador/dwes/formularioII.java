@@ -62,6 +62,7 @@ public class formularioII extends HttpServlet {
                  // Hay error y volvemos a mostrar el jsp anterior
             request.getRequestDispatcher("formu_boletos.jsp").forward(request, response);
 
+             
 
         }else{
 
@@ -70,13 +71,13 @@ public class formularioII extends HttpServlet {
 
 
                     // No hay error mostramos el jsp quiniela texto
-            request.getRequestDispatcher("").forward(request, response); 
+            request.getRequestDispatcher("formu_boletos.jsp").forward(request, response); 
 
 
         }else{
 
                      // No hay error mostramos el jsp quiniela grafico
-            request.getRequestDispatcher("").forward(request, response);
+            request.getRequestDispatcher("formu_boletos.jsp").forward(request, response);
 
         }
 
