@@ -77,7 +77,7 @@ public class formularioII extends HttpServlet {
         }else{
 
                      // No hay error mostramos el jsp quiniela grafico
-            request.getRequestDispatcher("formu_boletos.jsp").forward(request, response);
+            request.getRequestDispatcher("grafico.jsp").forward(request, response);
 
         }
 
