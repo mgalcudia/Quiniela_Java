@@ -32,63 +32,35 @@
         <% for(int j=1; j<=valor; j++) {%>
         <br>Apuesta <%=j%>: 
         <br/>
+        <!-- Mostramos los equipos y su 1X2 correspondiente -->
         <% for(int k=0;k<14;k++) 
         {
-        NumeroAleatorios ale = new NumeroAleatorios(1,3);
-                    //genero apuesta
+                 NumeroAleatorios ale = new NumeroAleatorios(1,3);
+                    //genero aleatorio
                     int apuesta = ale.generar();
 
                     String equipo_local= equipos.equipo_casa(k);
-                    String  equipo_visitante= equipos.equipo_fuera(k);
-                    //out.print(equipo_local+" - "+);
-                    //inicializo apuesta a 0
-                    out.print(equipo_local+" - "+equipo_visitante+":       ");
+                    String  equipo_visitante= equipos.equipo_fuera(k); 
+                    String resultado= equipos.valor_texto(apuesta);    
 
-
-
-                    switch(apuesta){
-
-                    case 1:
-                    out.print("&nbsp;&nbsp;&nbsp;&nbsp;      [1]-[&nbsp;&nbsp;]-[&nbsp;&nbsp;] ");
-                    break;
-                    case 2:
-                    out.print("&nbsp;&nbsp;&nbsp;&nbsp;     [&nbsp;&nbsp;]-[2]-[&nbsp;&nbsp;] ");
-                    break;
-                    case 3:
-                    out.print("&nbsp;&nbsp;&nbsp;&nbsp;     [&nbsp;&nbsp;]-[&nbsp;&nbsp;]-[X] ");
-                    break;
-                    default:
-                    out.print(" Errorr ");
-                    break;
-                }
-                out.print(" <br/> ");  
-
-                apuesta=0;
+                    out.print(equipo_local+" - "+equipo_visitante+":       ");                    
+                    out.print(resultado);                    
+                    out.print(" <br/> ");                  
             }
         }
         %> 
         <p> Pleno al 15:</p>
         <%
-                //
+                
                 NumeroAleatorios ale = new NumeroAleatorios(1,3);
                 int apu_pleno = ale.generar();
                 String pleno_quice= equipos.pleno();
                 out.print(pleno_quice+":       ");
-                switch(apu_pleno){
 
-                case 1:
-                out.print("&nbsp;&nbsp;&nbsp;&nbsp;      [1]-[&nbsp;&nbsp;]-[&nbsp;&nbsp;] ");
-                break;
-                case 2:
-                out.print("&nbsp;&nbsp;&nbsp;&nbsp;     [&nbsp;&nbsp;]-[2]-[&nbsp;&nbsp;] ");
-                break;
-                case 3:
-                out.print("&nbsp;&nbsp;&nbsp;&nbsp;     [&nbsp;&nbsp;]-[&nbsp;&nbsp;]-[X] ");
-                break;
-                default:
-                out.print(" Errorr ");
-                break;
-            }
+                 String resultado= equipos.valor_texto(apu_pleno);
+                 out.print(resultado);
+
+              
             out.print(" <br/> ");
 
             %>

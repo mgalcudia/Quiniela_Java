@@ -9,19 +9,7 @@ import java.util.ArrayList;
 
 
 public class equipos {
-/*
-  private String[] equipo_local;
-  private String[] equipo_visitante;
-  private String[] pleno_quince;
 
-  public equipos(String[] equipo_local, String[] equipo_visitante,String[] pleno_quince)
-  {
-    this.equipo_local = equipo_local;
-    this.equipo_visitante = equipo_visitante;
-    this.pleno_quince = pleno_quince;
-
-}
-*/
 public static String equipo_casa(int i){
 
 
@@ -52,39 +40,29 @@ public static String pleno(){
 
 }
 
-/*
+public static String valor_texto(int apuesta){
 
-public static String equipo_casa(int i){
+  String resultado;
 
+   switch(apuesta){
 
-
-    String[] equipo_local= {"R.SOCIEDAD","AT.MADRID","DEPORTIVO","VILLARREAL","ATHLETIC CLUB","LEVANTE","GRANADA","RAYO VALLECANO","RACING","TENERIFE","SPORTING","BETIS","PONFERRADINA","GIRONA"};
-
-    return equipo_local[i];
-
-
-}
-
-public static String equipo_fuera(int i){
-
-
-   String[] equipo_visitante= {"CORDOBA","GETAFE","ESPAÑOL","SEVILLA","ALMERIA","CELTA","EIBA","MALAGA","ZARAGOZA","OSASUNA","RECREATIVO","LEGANES","VALLADOLID","SABADELL"};
-
-
-   return  equipo_visitante[i];
-
-}
-
-public static String pleno(){
-
-    String[] pleno_quince= {"BARCELONA - R.MADRID"};
-
-    return pleno_quince[0];
+                    case 1:
+                    resultado= "&nbsp;&nbsp;&nbsp;&nbsp;      [1]-[&nbsp;&nbsp;]-[&nbsp;&nbsp;] ";
+                    break;
+                    case 2:
+                    resultado= "&nbsp;&nbsp;&nbsp;&nbsp;     [&nbsp;&nbsp;]-[2]-[&nbsp;&nbsp;] ";
+                    break;
+                    case 3:
+                    resultado= "&nbsp;&nbsp;&nbsp;&nbsp;     [&nbsp;&nbsp;]-[&nbsp;&nbsp;]-[X] ";
+                    break;
+                    default:
+                    resultado= " Errorr ";
+                    break;
 
 
 }
-*/
 
-    
+    return resultado;
 
+}
 }
