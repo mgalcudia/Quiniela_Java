@@ -1,6 +1,6 @@
 <%-- 
     Document   : index
-    Created on : 30-may-2015, 10:37:15
+    Created on : 18-may-2015, 23:27:56
     Author     : yo
 --%>
 
@@ -12,8 +12,8 @@
         <title>..: Quiniela :..</title>
     </head>
     <body>
-         <h1>..: Quiniela :..</h1>
-         
-         
+        <h1>..: Quiniela :..</h1>
+        <li><a href="formulario?modo=text">Quiniela en modo texto</a></li>
+        <li><a href="formulario?modo=graf">Quiniela en modo gráfico</a></li>
     </body>
 </html>

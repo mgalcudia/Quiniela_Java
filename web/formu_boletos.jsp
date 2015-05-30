@@ -30,10 +30,10 @@
                     {
                         String apuesta = request.getParameter("apuesta"+numero);
                         String num = new Integer(i).toString();%>
-                        <option value="<%=i %>" <% if(apuesta!=null && num.equals(apuesta)) { out.print("selected=\"selected\"");}%> ><%=i %></option>
+                        <option value="<%=i%>" <% if(apuesta!=null && num.equals(apuesta)) {out.print("selected=\"selected\"");}%> ><%=i %></option>
                     <% } %>
                 </select><br>
-                <input type="hidden" value="<%=num_boletos%>" name="num_boletos" value="1"/>
+                <input type="hidden" value="<%=num_boletos%>" name="num_boletos"/>
             <%}%>
             <button type="submit" name="continuar">Continuar</button>
         </form>

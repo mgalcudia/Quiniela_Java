@@ -27,7 +27,9 @@
             <% total+=0.5; %>
             <!-- recogemos el valor de cada apuesta -->
             
-            <% int valor=Integer.parseInt(request.getParameter("apuesta"+i));%>
+            <% int valor=Integer.parseInt(request.getParameter("apuesta"+i));
+            int valor_colspan= valor*3;
+            out.print(valor_colspan);%>
             <table border="1" bordercolor="red">
 
             <tr>
@@ -43,58 +45,25 @@
              String  equipo_visitante= equipos.equipo_fuera(k);
                     
              %>
-
             <tr>
             <td>
             <%
             out.print(equipo_local+" - "+equipo_visitante+":       ");
                 %>
-            </td>
-            
+            </td>            
             <!--  for para apuestas -->
              <% for(int j=1; j<=valor; j++) {
             NumeroAleatorios ale = new NumeroAleatorios(1,3);
-                    //genero apuesta
+                    //genero aleatorio
             int apuesta = ale.generar();
-             %>
-            
-                <!-- <td> pintamos la apuesta[i]-->
+             %>            
+                <!--pintamos la apuesta[i]-->
                 <%
-                switch(apuesta){
-
-                    case 1:
-                    
-                    out.print("<td bgcolor='red'><font color='#fff'>1</font></td>");
-                    out.print("<td>X</td>");
-                    out.print("<td>2</td>");
-                    break;
-                    case 2:
-                    out.print("<td>1</td>");
-                    out.print("<td>X</td>");
-                    out.print("<td bgcolor='red'><font color='#fff'>2</font></td>");
-                     
-                     
-                    break;
-                    case 3:
-                    out.print("<td>1</td>");
-                    out.print("<td bgcolor='red' ><font color='#fff'>X</font></td>");
-                    out.print("<td>2</td>");
-                     
-                     
-                    break;
-                    default:
-                    
-                     out.print(" Errorr ");
-                    
-                    break;
-                    }
-                %>
-
-            
-                <!-- </td> fin for apuestas-->
-                <%}%>
+                 String resultado= equipos.valor_grafica(apuesta);
+                out.print(resultado);               
+               }%>           
+                <!--fin for apuestas-->               
             </tr>
-
             <%} %>
            <!-- fin del for de 14 -->
            <tr>
@@ -105,55 +74,22 @@
                    <!-- pintamos el equipos del pleno-->
                    <%
                    String pleno_quice= equipos.pleno();
-                 out.print(pleno_quice+":       ");
-                 NumeroAleatorios ale = new NumeroAleatorios(1,3);
+                    out.print(pleno_quice+":       ");
+                  NumeroAleatorios ale = new NumeroAleatorios(1,3);
                    %>
                </td>
               
                    <!-- pintamos apuestas pleno 15-->
                    <%
-                    //NumeroAleatorios ale = new NumeroAleatorios(1,3);
+                    
                      int apu_pleno = ale.generar();
-
-                     switch(apu_pleno){
-
-                   case 1:
-                    
-                    out.print("<td bgcolor='red'><font color='#fff'>1</font></td>");
-                    out.print("<td>X</td>");
-                    out.print("<td>2</td>");
-                    break;
-                    case 2:
-                    out.print("<td>1</td>");
-                    out.print("<td>X</td>");
-                    out.print("<td bgcolor='red'><font color='#fff'>2</font></td>");
-                     
-                     
-                    break;
-                    case 3:
-                    out.print("<td>1</td>");
-                    out.print("<td bgcolor='red' ><font color='#fff'>X</font></td>");
-                    out.print("<td>2</td>");
-                     
-                     
-                    break;
-                    default:
-                    
-                     out.print(" Errorr ");
-                    
-                    break;
-                    }
-
-                   %>
-               
+                      String resultado= equipos.valor_grafica(apu_pleno);
+                    out.print(resultado);
+                   %>               
            </tr>
             </table>
                    <p> Importe Boleto: 0.50 € </p>
                    <br/>
-                   
-
-            
-           
         <%}%>
         <br/>
         <p>El importe Total que debe abonar son: <%=total%> €</p>
