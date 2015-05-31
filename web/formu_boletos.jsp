@@ -11,7 +11,8 @@
         <meta charset="UTF-8">
         <title>JSP Page</title>
     </head>
-        <body>
+        <body style="background-color:#009999">
+        <%@ include file = "menu_izq.jsp"%>
         <h3>Apuestas</h3>
         <%String modo=request.getParameter("modo");%>
         <%=request.getParameter("modo") %>

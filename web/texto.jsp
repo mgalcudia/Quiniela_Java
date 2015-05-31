@@ -16,7 +16,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
-    <body>
+    <body style="background-color:#009999">
+    <%@ include file = "menu_izq.jsp"%>
         <h3>Apuestas generadas</h3>
         
         <!-- Número de boletos rescatado del campo oculto -->

@@ -11,8 +11,18 @@
         <meta charset="UTF-8">
         <title>..: Quiniela :..</title>
     </head>
-    <body>
+    <body style="background-color:#009999">
          <h1>..: Quiniela :..</h1>
+
+          <form action="login" method="post">
+
+            Usuario:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" name="user">
+            <br>
+            Contraseña: <input type="password" name="pass">
+            <br>
+            <br>
+            <input type="submit" value="Login">
+        </form>
          
          
     </body>

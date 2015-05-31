@@ -14,7 +14,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
-        <body>
+        <body style="background-color:#009999">
+        <%@ include file = "menu_izq.jsp"%>
         <h3>Apuestas generadas</h3>
         
         <!-- Número de boletos rescatado del campo oculto -->
@@ -29,7 +30,7 @@
             
             <% int valor=Integer.parseInt(request.getParameter("apuesta"+i));
             int valor_colspan= valor*3;
-            out.print(valor_colspan);%>
+            //out.print(valor_colspan);%>
             <table border="1" bordercolor="red">
 
             <tr>

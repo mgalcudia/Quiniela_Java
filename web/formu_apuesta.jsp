@@ -12,7 +12,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Apuestas Quiniela</title>
     </head>
-    <body>
+    <body style="background-color:#009999">
+    <%@ include file = "menu_izq.jsp"%>
        
        <form method="post">
             <h2>Generación de apuestas modo texto</h2>
