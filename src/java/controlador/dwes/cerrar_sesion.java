@@ -3,9 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-
-
 package controlador.dwes;
 
 import java.io.IOException;
@@ -14,16 +11,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author yo
  */
-public class login extends HttpServlet {
-
-
-    private final String USUARIO = "usuario";
-    private final String PASS = "123456";
+public class cerrar_sesion extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,30 +31,24 @@ public class login extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
-
-        String usuario = request.getParameter("user");
-        String password = request.getParameter("pass");
-
-        if (USUARIO.equals(usuario) && PASS.equals(password)) {
-            request.getSession().setAttribute("logueado", "ok");
-            response.sendRedirect("comienzo.jsp");
-        } else {
+        
+         HttpSession sesion = request.getSession();
+                
+        if (sesion!=null){
             
-            response.sendRedirect("index.jsp");
+            sesion.removeAttribute("logueado");
+            //sesion.invalidate();
+            
+            if(sesion.getAttribute("loqueado")==null){
+                
+                response.sendRedirect("index.jsp");
+            }
+             
         }
-
-
-
-
-
-       
+                
+                
     }
 
-    
-    
-    
-    ////////////////////////////////////////////////////////////////////////////////////
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

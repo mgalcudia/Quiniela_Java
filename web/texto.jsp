@@ -1,5 +1,8 @@
 
 
+<%@page import="java.util.Vector"%>
+
+<%@page import="controlador.dwes.Jornada"%>
 <%-- 
     Document   : texto
     Created on : 25-may-2015, 0:45:51
@@ -22,49 +25,75 @@
         
         <!-- Número de boletos rescatado del campo oculto -->
         <% int numeros_boletos = Integer.parseInt(request.getParameter("num_boletos"));
-        double total=0;   
+        double total=0; 
+        Jornada jornadaActual=new Jornada();
+        HttpSession sesion=request.getSession();
+        Vector v=new Vector();
         %>
         <!-- Muestra Boletos -->
-        <% for(int i=1; i<=numeros_boletos; i++) {%>
-        <br>Boleto <%=i%>º<br>
-        <% total+=0.5; %>
-        <% int valor=Integer.parseInt(request.getParameter("apuesta"+i));%>
-        <!-- Muestra el numero de apuestas -->
-        <% for(int j=1; j<=valor; j++) {%>
-        <br>Apuesta <%=j%>: 
-        <br/>
-        <!-- Mostramos los equipos y su 1X2 correspondiente -->
-        <% for(int k=0;k<14;k++) 
-        {
-                 NumeroAleatorios ale = new NumeroAleatorios(1,3);
-                    //genero aleatorio
-                    int apuesta = ale.generar();
-
-                    String equipo_local= equipos.equipo_casa(k);
-                    String  equipo_visitante= equipos.equipo_fuera(k); 
-                    String resultado= equipos.valor_texto(apuesta);    
-
-                    out.print(equipo_local+" - "+equipo_visitante+":       ");                    
-                    out.print(resultado);                    
-                    out.print(" <br/> ");                  
-            }
-        }
-        %> 
-        <p> Pleno al 15:</p>
-        <%
-                
-                NumeroAleatorios ale = new NumeroAleatorios(1,3);
-                int apu_pleno = ale.generar();
-                String pleno_quice= equipos.pleno();
-                out.print(pleno_quice+":       ");
-
-                 String resultado= equipos.valor_texto(apu_pleno);
-                 out.print(resultado);
-
-              
-            out.print(" <br/> ");
-
-            %>
+        <% for(int j=1; j<=numeros_boletos; j++) {%>
+            <br>Boleto <%=j%>º<br>
+            <% total+=0.5; %>
+            <!-- recogemos el valor de cada apuesta -->
+            
+            <% int valor=Integer.parseInt(request.getParameter("apuesta"+j));
+            int valor_colspan= valor*3;
+            //out.print(valor_colspan);%>
+            <table>
+            <!-- Una fila por cada equipo -->
+            <!-- ponemos for 14-->
+             <% for(int i=0;i<14;i++){ 
+            
+             String equipo_local= jornadaActual.equipo_casa(i);
+             String  equipo_visitante= jornadaActual.equipo_fuera(i);
+                    
+             %>
+            <tr>
+            <td>
+            <%
+            out.print(equipo_local+" - "+equipo_visitante+":       ");
+                %>
+            </td>            
+            <!--  for para apuestas -->
+             <% for(int k=1; k<=valor; k++) {
+                 
+              String resultado= jornadaActual.GeneraResultadoApuesta();   
+              v.addElement(resultado);
+             
+               // <!--pintamos la apuesta[i]-->
+                out.print("<td>"+resultado+"</td>");                  
+                 
+                //out.print(resultado);               
+               }%>           
+                <!--  </td>fin for apuestas--> 
+            
+            </tr>
+            <%} %>
+           <!-- fin del for de 14 -->
+           <tr>
+               <th colspan="25">Pleno al quince</th>
+           </tr>
+           <tr>
+               <td>
+                   <!-- pintamos el equipos del pleno-->
+                   <%
+                   String pleno_quice= jornadaActual.pleno();
+                    out.print(pleno_quice+":       ");                 
+                   %>
+               </td>
+               
+                   <!--<td> pintamos apuestas pleno 15-->
+                   <%
+                    
+                     //int apu_pleno = ale.generar();
+                      String resultado= jornadaActual.GeneraResultadoApuesta();
+                       v.addElement(resultado);
+                     
+                    out.print("<td>"+resultado+"</td>"); 
+               sesion.setAttribute("Partida_Anterior",v);
+                   %> 
+           </tr>
+            </table>
 
             <p> Importe Boleto: 0.50 € </p>
             <br/>

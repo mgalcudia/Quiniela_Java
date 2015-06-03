@@ -16,6 +16,16 @@
      <a href="formulario?modo=text">Quiniela en modo texto</a>
      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <a href="formulario?modo=graf">Quiniela en modo gráfico</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <%
+        if (session.getAttribute("Partida_Anterior") != null) {
+        %>
+        <a href="ultimaApuesta.jsp">Mostrar última apuesta</a>
+        <%
+            }
+        %>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="cerrar_sesion">Salir</a>
     
     
 </div>
