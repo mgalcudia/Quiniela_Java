@@ -24,11 +24,18 @@
         <h3>Apuestas generadas</h3>
         
         <!-- Número de boletos rescatado del campo oculto -->
-        <% int numeros_boletos = Integer.parseInt(request.getParameter("num_boletos"));
+        <% 
+        HttpSession sesion=request.getSession();
+        int numeros_boletos = Integer.parseInt(request.getParameter("num_boletos"));
+        Integer boleto = new Integer(numeros_boletos);
+        sesion.setAttribute("num_boletos",boleto); 
         double total=0; 
         Jornada jornadaActual=new Jornada();
-        HttpSession sesion=request.getSession();
+       
         Vector v=new Vector();
+        Vector equipo= new Vector();
+        Vector num_apuestas=new Vector();
+        
         %>
         <!-- Muestra Boletos -->
         <% for(int j=1; j<=numeros_boletos; j++) {%>
@@ -37,8 +44,10 @@
             <!-- recogemos el valor de cada apuesta -->
             
             <% int valor=Integer.parseInt(request.getParameter("apuesta"+j));
-            int valor_colspan= valor*3;
+             num_apuestas.addElement(valor);
             //out.print(valor_colspan);%>
+            <%=valor%>
+            <br>
             <table>
             <!-- Una fila por cada equipo -->
             <!-- ponemos for 14-->
@@ -46,7 +55,7 @@
             
              String equipo_local= jornadaActual.equipo_casa(i);
              String  equipo_visitante= jornadaActual.equipo_fuera(i);
-                    
+             equipo.addElement(equipo_local+" - "+equipo_visitante+":");
              %>
             <tr>
             <td>
@@ -78,6 +87,7 @@
                    <!-- pintamos el equipos del pleno-->
                    <%
                    String pleno_quice= jornadaActual.pleno();
+                   equipo.addElement(pleno_quice);
                     out.print(pleno_quice+":       ");                 
                    %>
                </td>
@@ -90,7 +100,9 @@
                        v.addElement(resultado);
                      
                     out.print("<td>"+resultado+"</td>"); 
-               sesion.setAttribute("Partida_Anterior",v);
+                sesion.setAttribute("Partida_Anterior",v);
+                sesion.setAttribute("Equipos_anterior",equipo);
+                sesion.setAttribute("numero_apuestas", num_apuestas);
                    %> 
            </tr>
             </table>

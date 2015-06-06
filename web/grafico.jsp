@@ -10,18 +10,6 @@
 <%@page import="controlador.dwes.Jornada"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<%  
-    /*
-    
-    if tengo que recuperar jornada de sesion
-       recupero jornada de sesion
-    sino 
-       genero apuestas
-    */ 
-    
-    
-    // Guardo la jornada en la sesion
-%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -33,12 +21,17 @@
         <h3>Apuestas generadas</h3>
         
         <!-- Número de boletos rescatado del campo oculto -->
-        <% int numeros_boletos = Integer.parseInt(request.getParameter("num_boletos"));
+        <% 
+        HttpSession sesion=request.getSession();
+        int numeros_boletos = Integer.parseInt(request.getParameter("num_boletos"));
+        Integer boleto = new Integer(numeros_boletos);
+        sesion.setAttribute("num_boletos",boleto); 
         double total=0; 
         Jornada jornadaActual=new Jornada();
-        HttpSession sesion=request.getSession();
+       
         Vector v=new Vector();
-        Vector equip=new Vector();
+        Vector equipo= new Vector();
+        Vector num_apuestas=new Vector();
         %>
         <!-- Muestra Boletos -->
         <% for(int j=1; j<=numeros_boletos; j++) {%>
@@ -47,8 +40,8 @@
             <!-- recogemos el valor de cada apuesta -->
             
             <% int valor=Integer.parseInt(request.getParameter("apuesta"+j));
-            int valor_colspan= valor*3;
-            //out.print(valor_colspan);%>
+            num_apuestas.addElement(valor);
+            %>
             <table border="1" bordercolor="red">
 
             <tr>
@@ -62,7 +55,7 @@
             
              String equipo_local= jornadaActual.equipo_casa(i);
              String  equipo_visitante= jornadaActual.equipo_fuera(i);
-             equip.addElement(equipo_local+" - "+equipo_visitante+":       ");
+             equipo.addElement(equipo_local+" - "+equipo_visitante+":");
                     
              %>
             <tr>
@@ -86,10 +79,7 @@
                 }else{
                     
                     out.print("<td>1</td><td bgcolor='red' ><font color='#fff'>X</font></td><td>2</td>");
-                }
-                 
-                 
-                //out.print(resultado);               
+                }             
                }%>           
                 <!--  </td>fin for apuestas--> 
             
@@ -104,7 +94,7 @@
                    <!-- pintamos el equipos del pleno-->
                    <%
                    String pleno_quice= jornadaActual.pleno();
-                   equip.addElement(pleno_quice);
+                   equipo.addElement(pleno_quice);
                     out.print(pleno_quice+":       ");                 
                    %>
                </td>
@@ -125,8 +115,9 @@
                     out.print("<td>1</td><td bgcolor='red' ><font color='#fff'>X</font></td><td>2</td>");
                 }
                       
-               sesion.setAttribute("Partida_Anterior",v);
-               sesion.setAttribute("Equipos_anterior",equip);
+                sesion.setAttribute("Partida_Anterior",v);
+                sesion.setAttribute("Equipos_anterior",equipo);
+                sesion.setAttribute("numero_apuestas", num_apuestas);
                    %> 
            </tr>
             </table>
