@@ -6,6 +6,12 @@
 
 <%@page import="java.util.Vector"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+ <%
+            if((String) request.getSession().getAttribute("logueado") == null)
+                {
+                response.sendRedirect("index.jsp");
+                }
+            %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,24 +21,18 @@
     <body style="background-color:#009999">
         <%@ include file = "menu_izq.jsp"%>
         <h3>Ultima apuesta</h3>
-        <%            
-            out.println(session.getAttribute("Partida_Anterior"));
-            out.println(session.getAttribute("Equipos_anterior"));
-            out.println(session.getAttribute("num_boletos"));
-            out.println(session.getAttribute("numero_apuestas"));
+        <%
             Vector equipos = (Vector) session.getAttribute("Equipos_anterior");
             Vector apuestas = (Vector) session.getAttribute("Partida_Anterior");
             Vector num_apuestas = (Vector) session.getAttribute("numero_apuestas");
             Integer numero_boletos = (Integer) session.getAttribute("num_boletos");
-            out.print(apuestas.size());
-            out.print(numero_boletos);
-            out.print(num_apuestas.elementAt(1));
+            
             int indice= 0;
         %>
         <% for (int j = 0; j < numero_boletos; j++) {
         int num_apuesta = Integer.parseInt( num_apuestas.elementAt(j).toString()) ;
         %>
-        <table border="1">
+        <table>
             <!-- Una fila por cada equipo -->
             <!-- ponemos for 14-->
             <% for (int i = 0; i < 14; i++) {

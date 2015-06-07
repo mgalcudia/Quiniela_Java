@@ -6,6 +6,12 @@
 
 <%@page import="controlador.dwes.FormHelper"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+ <%
+            if((String) request.getSession().getAttribute("logueado") == null)
+                {
+                response.sendRedirect("index.jsp");
+                }
+            %>
 <!DOCTYPE html>
 <html>
     <head>

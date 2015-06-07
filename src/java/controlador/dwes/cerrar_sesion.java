@@ -37,12 +37,13 @@ public class cerrar_sesion extends HttpServlet {
         if (sesion!=null){
             
             sesion.removeAttribute("logueado");
-            //sesion.invalidate();
+           // sesion.invalidate();
             
             if(sesion.getAttribute("loqueado")==null){
                 
                 response.sendRedirect("index.jsp");
             }
+
              
         }
                 

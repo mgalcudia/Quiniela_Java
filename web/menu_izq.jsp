@@ -12,7 +12,8 @@
 <div style="background-color:SandyBrown; text-align: center; padding-right: 5px" >
    
     
-  
+    <a href="comienzo.jsp">Inicio</a>
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
      <a href="formulario?modo=text">Quiniela en modo texto</a>
      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <a href="formulario?modo=graf">Quiniela en modo gráfico</a>
